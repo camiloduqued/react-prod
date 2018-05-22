@@ -19,7 +19,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo "tests"
+                echo "tests2"
                 //sh './scripts/test.sh'
             }
         }
