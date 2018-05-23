@@ -8,7 +8,7 @@ node{
     }
 
     stage('Build') {
-        echo "build"
+        sh 'npm install'
     }
 
     stage('Test') {
