@@ -1,37 +1,17 @@
-pipeline {
-    agent {
-        docker {
-            image 'node:6-alpine'
-            args '-p 3000:3000'
-        }
+node{
+    stage('Checkout'){
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'adb60ca1-1352-4c4f-8359-35111559643e', url: 'https://camiloduqued@bitbucket.org/camiloduqued/react-prod.git']]])
     }
-    environment {
-        CI = 'true'
+
+    stage('Build') {
+        echo "build"
     }
-    stages {
 
-        stage('Build') {
-            steps {
-                echo "build"
-                //sh 'npm install'
-            }
-        }
+    stage('Test') {
+        echo "test"
+    }
 
-        stage('Test') {
-            steps {
-                echo "tests4"
-                //sh './scripts/test.sh'
-            }
-        }
-
-        stage('Deliver') {
-            steps {
-                echo "deliver"
-                //sh './scripts/deploy.sh'
-                //input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                //sh './jenkins/scripts/kill.sh'
-            }
-        }
-
+    stage('Deliver') {
+        echo "deliver"
     }
 }
